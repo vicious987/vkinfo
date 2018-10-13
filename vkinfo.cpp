@@ -17,7 +17,6 @@ int main(int argc, char* argv[])
 	createInfo.enabledLayerCount = 0;
 
 	VkInstance instance;
-	VkResult result = vkCreateInstance(&createInfo, nullptr, &instance);
 
 	if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) {
 		std::cerr << "Failed to create instance!" << std::endl;
