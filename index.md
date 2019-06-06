@@ -1,3 +1,3 @@
 # Heading 1
 
-Index
+[link to list](list.md)
