@@ -1,0 +1,2 @@
+sudo dnf install rubygem-jekyll
+bundle exec jekyll serve
