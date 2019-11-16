@@ -12,18 +12,19 @@ jobs:
   test_cron_a:
     name: Test scheduled build A
     runs-on: ubuntu-18.04
+    env:
+      DATE: test
     steps:
       - uses: actions/checkout@v1
       - run: |
+          env
           mkdir foo
           date > foo/date.txt
           mv foo foo-a # "foo-a-$(date +%H%M)"
       - uses: actions/upload-artifact@master
-        env:
-          DATE: test
         with:
           path: foo-a
-          name: foo-a-${{ env.USER }}
+          name: foo-a-${{ env.DATE }}
 
   test_cron_b:
     name: Test scheduled build B
