@@ -1,0 +1,20 @@
+name: Nightly builds
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+
+jobs:
+ 
+  test_cron:
+    name: Test scheduled builds
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - run: |
+          mkdir foo
+          echo "bar" > foo/baz.txt
+      - uses: actions/upload-artifact@master
+        with:
+          name: foo
+          path: foo
