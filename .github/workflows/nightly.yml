@@ -17,13 +17,13 @@ jobs:
       - run: |
           mkdir foo
           date > foo/date.txt
-          mv foo "foo-a-$(date +%H%M)"
+          mv foo foo-a # "foo-a-$(date +%H%M)"
       - uses: actions/upload-artifact@master
         env:
           DATE: test
         with:
-          path: foo-*
-          name: a
+          path: foo-a
+          name: foo-a-{{ github.sha1 }}
 
   test_cron_b:
     name: Test scheduled build B
@@ -33,10 +33,10 @@ jobs:
       - run: |
           mkdir foo
           date > foo/date.txt
-          mv foo "foo-b-$(date +%H%M)"
+          mv foo foo-b # "foo-b-$(date +%H%M)"
       - uses: actions/upload-artifact@master
         env:
           DATE: $(date +%H%M)
         with:
-          path: foo-*
-          name: b
+          path: foo-b
+          name: foo-b
