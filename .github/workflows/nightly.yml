@@ -6,8 +6,21 @@ on:
 
 jobs:
  
-  test_cron:
-    name: Test scheduled builds
+  test_cron_a:
+    name: Test scheduled build A
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - run: |
+          mkdir foo
+          date > foo/date.txt
+      - uses: actions/upload-artifact@master
+        with:
+          name: foo
+          path: foo
+
+  test_cron_b:
+    name: Test scheduled build B
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v1
