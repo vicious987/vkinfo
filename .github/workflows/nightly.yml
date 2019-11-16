@@ -14,12 +14,12 @@ jobs:
       - run: |
           mkdir foo
           date > foo/date.txt
+          mv foo "foo-a-$(date +%H%M)"
       - uses: actions/upload-artifact@master
         env:
           DATE: test
         with:
-          name: foo-${{ env.DATE }}
-          path: foo
+          path: foo-*
 
   test_cron_b:
     name: Test scheduled build B
@@ -29,9 +29,9 @@ jobs:
       - run: |
           mkdir foo
           date > foo/date.txt
+          mv foo "foo-b-$(date +%H%M)"
       - uses: actions/upload-artifact@master
         env:
           DATE: $(date +%H%M)
         with:
-          name: foo-${{ env.DATE }}
-          path: foo
+          path: foo-*
