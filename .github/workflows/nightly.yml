@@ -1,6 +1,9 @@
 name: Nightly builds
 
 on:
+  push:
+    branches:    
+      - master
   schedule:
     - cron: '*/15 * * * *'
 
