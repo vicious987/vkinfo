@@ -37,7 +37,7 @@ jobs:
           mkdir foo
           date > foo/date.txt
           mv foo foo-b # "foo-b-$(date +%H%M)"
-          export DATE=$(date +%H%M)
+          echo ::set-env name=DATE::123
       - uses: actions/upload-artifact@master
         with:
           path: foo-b
