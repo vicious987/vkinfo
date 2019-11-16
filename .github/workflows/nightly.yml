@@ -23,6 +23,7 @@ jobs:
           DATE: test
         with:
           path: foo-*
+          name: a
 
   test_cron_b:
     name: Test scheduled build B
@@ -38,3 +39,4 @@ jobs:
           DATE: $(date +%H%M)
         with:
           path: foo-*
+          name: b
