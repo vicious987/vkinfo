@@ -15,8 +15,10 @@ jobs:
           mkdir foo
           date > foo/date.txt
       - uses: actions/upload-artifact@master
+        env:
+          DATE: test
         with:
-          name: foo
+          name: foo-${{ env.DATE }}
           path: foo
 
   test_cron_b:
@@ -28,6 +30,8 @@ jobs:
           mkdir foo
           date > foo/date.txt
       - uses: actions/upload-artifact@master
+        env:
+          DATE: $(date +%H%M)
         with:
-          name: foo
+          name: foo-${{ env.DATE }}
           path: foo
