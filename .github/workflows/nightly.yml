@@ -23,7 +23,7 @@ jobs:
           DATE: test
         with:
           path: foo-a
-          name: foo-a-${{ github.sha }}
+          name: foo-a-${{ env.USER }}
 
   test_cron_b:
     name: Test scheduled build B
