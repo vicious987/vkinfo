@@ -9,6 +9,14 @@ on:
 #    - cron: '*/15 * * * *'
 
 jobs:
+
+  test_matrix:
+    name: Test ${{ matrix.xxx }} matrix 
+    strategy:
+      matrix:
+        xxx: [Aaa, Bbb]
+    steps:
+      - run: echo ${{ matrix.xxx }}
  
   test_cron_a:
     name: Test scheduled build A
