@@ -11,13 +11,17 @@ on:
 jobs:
 
   test_matrix:
-    name: Test ${{ matrix.xxx }} matrix 
+    name: Test ${{ matrix.xxx.name }} matrix 
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        xxx: [Aaa, Bbb]
+        xxx:
+          - name: Aaa
+            value: foo
+          - name: Bbb
+            value: bar
     steps:
-      - run: echo ${{ matrix.xxx }}
+      - run: echo ${{ matrix.xxx.value }}
  
   test_cron_a:
     name: Test scheduled build A
