@@ -12,6 +12,7 @@ jobs:
 
   test_matrix:
     name: Test ${{ matrix.xxx }} matrix 
+    runs-on: ubuntu-18.04
     strategy:
       matrix:
         xxx: [Aaa, Bbb]
