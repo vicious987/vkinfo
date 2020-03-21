@@ -1,0 +1,26 @@
+name: Foobar builds
+
+on:
+  push:
+    branches:
+      - master
+      - po/*
+
+#  schedule:
+#    - cron: '*/15 * * * *'
+
+jobs:
+
+  test:
+    name: Test ${{ matrix.conf.name }} matrix 
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        conf:
+          - name: Foo
+            value: foo
+          - name: Bar
+            value: bar
+    steps:
+      - run: echo ${{ matrix.conf.value }}
+
