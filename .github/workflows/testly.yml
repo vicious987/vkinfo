@@ -2,8 +2,6 @@ name: Foobar builds
 
 on: [push, pull_request]
 
-if: contains('aa,bb,dreamer', github.actor) == 'false'
-
 #  schedule:
 #    - cron: '*/15 * * * *'
 
@@ -15,7 +13,7 @@ jobs:
     # prevent duplicate jobs when maintainer is pushing to PR:
     # if: ! ( ${{ github.event_name }} == 'pull_request' && contains([aa, bb, dreamer], ${{ github.actor }}) )
     # if: contains(maintainers.*, github.actor)
-    # if: contains('aa,bb,dreamer', github.actor) == 'false'
+    if: github.event_name != 'pull_request' || contains('aa,bb,dreamer', github.actor) != 'true'
     strategy:
       matrix:
         conf:
