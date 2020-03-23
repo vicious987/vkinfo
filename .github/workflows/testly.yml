@@ -21,8 +21,8 @@ jobs:
             value: foo
     steps:
       - run: |
-          echo repo    "${{ toJson(github.event) }}"
-          echo event    ${{ github.event_name }}
-          echo ref      ${{ github.ref }}
-          echo actor    ${{ github.actor }}
-
+          # echo repo    "${{ toJson(github.event) }}"
+          echo event_name ${{ github.event_name }}
+          echo ref        ${{ github.ref }}
+          echo actor      ${{ github.actor }}
+          echo contains   ${{ contains('aa,bb,dreamer', github.actor) }}
