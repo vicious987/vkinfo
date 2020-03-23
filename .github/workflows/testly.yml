@@ -12,17 +12,16 @@ jobs:
     runs-on: ubuntu-18.04
     # prevent duplicate jobs when maintainer is pushing to PR:
     # if: ! ( ${{ github.event_name }} == 'pull_request' && contains([aa, bb, dreamer], ${{ github.actor }}) )
-    if: ${{ github.event_name }} != 'pull_request' || !contains([aa, bb, dreamer], ${{ github.actor }})
+    # if: contains(maintainers.*, github.actor)
+    if: github.event_name != 'pull_request' || contains( 'aa,bb,dreamer', github.actor ) == false
     strategy:
       matrix:
         conf:
           - name: Foo
             value: foo
-          - name: Bar
-            value: bar
     steps:
       - run: |
-          echo event    ${{ github.event_name }}
-          echo ref      ${{ github.ref }}
-          echo actor    ${{ github.actor }}
-
+          echo event_name ${{ github.event_name }}
+          echo ref        ${{ github.ref }}
+          echo actor      ${{ github.actor }}
+          echo contains   ${{ contains('aa,bb,dreamer', github.actor) }}
