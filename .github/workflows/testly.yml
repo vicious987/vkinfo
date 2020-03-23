@@ -21,5 +21,9 @@ jobs:
           - name: Bar
             value: bar
     steps:
-      - run: echo ${{ env.GITHUB_EVENT_NAME }} ${{ env.GITHUB_REF }} ${{ github.ref }}
+      - run: |
+          echo ev event ${{ env.GITHUB_EVENT_NAME }}
+          echo ev ref   ${{ env.GITHUB_REF }}
+          echo event    ${{ github.event }}
+          echo ref      ${{ github.ref }}
 
