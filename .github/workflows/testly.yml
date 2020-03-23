@@ -1,14 +1,6 @@
 name: Foobar builds
 
-on:
-  push:
-    branches:
-      - master
-      - po/*
-  pull_request:
-    branches:
-      - master
-      - '!po/*'
+on: [push, pull_request]
 
 #  schedule:
 #    - cron: '*/15 * * * *'
@@ -18,6 +10,9 @@ jobs:
   test:
     name: Test ${{ matrix.conf.name }} matrix 
     runs-on: ubuntu-18.04
+    # prevent duplicate jobs when maintainer is pushing to PR:
+    #if: !( ${{ env.GITHUB_EVENT_NAME }} == 'push' &&
+    #       ${{ env.GITHUB_REF }} == 'po/*' )
     strategy:
       matrix:
         conf:
@@ -26,5 +21,5 @@ jobs:
           - name: Bar
             value: bar
     steps:
-      - run: echo ${{ matrix.conf.value }}
+      - run: echo ${{ env.GITHUB_EVENT_NAME }} ${{ env.GITHUB_REF }} ${{ github.ref }}
 
