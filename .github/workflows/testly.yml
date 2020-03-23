@@ -24,6 +24,6 @@ jobs:
       - run: |
           echo ev event ${{ env.GITHUB_EVENT_NAME }}
           echo ev ref   ${{ env.GITHUB_REF }}
-          echo event    ${{ github.event }}
+          echo event    ${{ github.event_name }}
           echo ref      ${{ github.ref }}
 
