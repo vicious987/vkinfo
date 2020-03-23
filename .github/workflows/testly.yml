@@ -11,7 +11,8 @@ jobs:
     name: Test ${{ matrix.conf.name }} matrix 
     runs-on: ubuntu-18.04
     # prevent duplicate jobs when maintainer is pushing to PR:
-    if: ! ( ${{ github.event_name }} == 'pull_request' && contains([aa, bb, dreamer], ${{ github.actor }}) )
+    # if: ! ( ${{ github.event_name }} == 'pull_request' && contains([aa, bb, dreamer], ${{ github.actor }}) )
+    if: ${{ github.event_name }} != 'pull_request'
     strategy:
       matrix:
         conf:
