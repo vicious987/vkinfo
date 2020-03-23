@@ -1,5 +1,7 @@
 name: Foobar builds
 
+# maintainers: [aa, bb, dreamer]
+
 on: [push, pull_request]
 
 #  schedule:
@@ -12,7 +14,7 @@ jobs:
     runs-on: ubuntu-18.04
     # prevent duplicate jobs when maintainer is pushing to PR:
     # if: ! ( ${{ github.event_name }} == 'pull_request' && contains([aa, bb, dreamer], ${{ github.actor }}) )
-    if: ${{ github.event_name != 'pull_request' || !contains([aa, bb, dreamer], github.actor) }}
+    if: ${{ !( github.event_name == 'pull_request' || contains([aa, dreamer], github.actor) ) }}
     strategy:
       matrix:
         conf:
